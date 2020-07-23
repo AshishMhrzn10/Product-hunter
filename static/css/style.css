@@ -1,0 +1,8 @@
+/* Signup form */
+#signup_container{
+    text-align:center;
+}
+#signup_container h1{
+    margin-bottom:100px;
+    margin-top:50px;
+}
