@@ -1,6 +1,23 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h2>Homeee</h2>
-    {{username }}
+    {% for product in products %}
+        <div class="row pt-3">
+            <div class="col-md-2" onclick="window.location='{% url 'detail' product.id %}';" style="cursor:pointer;">
+                <img src="{{product.icon.url}}" class="img-fluid">
+            </div>
+            <div class="col-md-6">
+                <a href="{% url 'detail' product.id %}"><h1>{{product.title}}</h1></a>
+                <p>{{product.summary}}...</p>
+            </div>
+            <div class="col-md-4 mt-5">
+                <a href="javascript:{document.getElementById('upvote{{product.id}}').submit()}"><button class="btn btn-success btn-block"><i class="fa fa-thumbs-up" style="font-size:25px;"></i>  Upvote ( {{product.votes_total}} )</button></a>
+            </div>
+        </div>
+
+        <form id="upvote{{product.id}}" action="{% url 'upvote' product.id %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden">
+        </form>
+    {% endfor %}
 {% endblock content %}

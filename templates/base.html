@@ -8,20 +8,23 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Product hunt</title>
     <link rel="stylesheet" href="/static/css/style.css">
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="/"><img src="{% static 'images/logo.jpg' %}" class="d-inline-block align-top" height="30" width="30">Product Hunt</a>
+            <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'images/logo.jpg' %}" class="d-inline-block align-top" height="30" width="30">Product Hunt</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 {% if user.is_authenticated %}
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'create' %}"><i class="fa fa-plus" style="font-size:25px;color:white"></i> </a>
+                  </li>
                   <li class="nav-item">
                     <a class="nav-link" href="javascript:{document.getElementById('logout').submit()}">Logout</a>
                     <form action="{% url 'logout' %}" method="POST" id="logout">
@@ -30,7 +33,7 @@
                     </form>
                   </li>
                 {% else %}
-                  <li class="nav-item active">
+                  <li class="nav-item">
                     <a class="nav-link" href="{% url 'signup' %}">Sign Up</a>
                   </li>
                   <li class="nav-item">

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div id="signup_container">
+        {% if error %}
+            {{error}}
+        {% endif %}
+        <h1>Create</h1> 
+        <form action="{% url 'create' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <b>Title:</b>
+            <br>
+            <input type="text" name="title">
+            <br>
+            <b>Body:</b>
+            <br>
+            <input type="textbox" name="body">
+            <br>
+            <b>URL:</b>
+            <br>
+            <input type="text" name="url">
+            <br>
+            <br>
+            <b>Icon:</b>
+            <input type="file" name="icon">
+            <br>
+            <br>
+            <b>Image:</b>
+            <input type="file" name="image">
+            <br><br>
+            <input class="btn btn-primary" type="submit" value="Add product">
+        </form>
+    </div>
+{% endblock content %}
